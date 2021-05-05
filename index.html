@@ -10,9 +10,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sorteio</title>
     <style>*{text-align: center;}
-    body{display: grid;place-content: center; height: 98vh; overflow: hidden;}
+    body{display: grid;place-content: center; height: 98vh; overflow: hidden; grid-gap: 20px;}
     #escolhido{text-transform: uppercase;}
     #sortear{width: 90vw;}
+    #ordem-palavras{text-transform: uppercase;}
     </style>
 </head>
 <body>
@@ -25,6 +26,8 @@
     <h1 id="escolhido" class="animate__animated animate__heartBeat"></h1>
     <p>Você clicou <span id="vezes">0</span> vezes!</p>
     <button onclick="parImpar()">par ou impar</button>
+    <h2 id="ordem-palavras"></h2>
+    <button onclick="ordemPalavras()">sortear ordem das palavras</button>
 
 
 
@@ -47,9 +50,10 @@
 
         function parImpar(){
             const resultado  =  document.querySelector('#escolhido').innerHTML = nomes[getRandomArbitrary(0,nomes.length)];
-            var vez = document.querySelector('#vezes').innerText;
-            vez = parseInt(vez);
-            document.querySelector('#vezes').innerHTML = vez+1;
+            // var vez = document.querySelector('#vezes').innerText;
+            // vez = parseInt(vez);
+            // document.querySelector('#vezes').innerHTML = vez+1;
+            quantasVezezFoi();
         }
 
         const resultado  =  document.querySelector('#escolhido').innerHTML = nomes[getRandomArbitrary(0,nomes.length)];
@@ -62,6 +66,28 @@
                 document.querySelector('#escolhido').innerHTML = res[getRandomArbitrary(0,res.length)];
                 // resultado.classList.add('animate__animated', 'animate__heartBeat');
                 console.table(res);
+                quantasVezezFoi();
+                // var vez = document.querySelector('#vezes').innerText;
+                // vez = parseInt(vez);
+                // document.querySelector('#vezes').innerHTML = vez+1;
+            }
+
+
+
+            function ordemPalavras(digitado){
+                const ordenar = document.querySelector('#sortear');
+                let res = ordenar.value.split(",");
+                // console.log(`1 - ${res}`);
+                // console.log(typeof(res));
+                // let list = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+                // list = list.sort(() => Math.random() - 0.5);
+                list = res.sort(() => Math.random() - 0.5);
+                document.querySelector('#ordem-palavras').innerHTML = list.toString().replaceAll(","," | ");
+                quantasVezezFoi();
+            }
+
+
+            function quantasVezezFoi(){
                 var vez = document.querySelector('#vezes').innerText;
                 vez = parseInt(vez);
                 document.querySelector('#vezes').innerHTML = vez+1;
