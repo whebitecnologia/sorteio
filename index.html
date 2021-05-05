@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorteio</title>
+    <style>*{text-align: center;}
+    body{display: grid;place-content: center; height: 98vh; overflow: hidden;}
+    #escolhido{text-transform: uppercase;}
+    #sortear{width: 90vw;}
+    </style>
+</head>
+<body>
+    <input type="text" id="sortear" placeholder="digite as palavras e separe por virgula ex: 'sim, não, talvez'">
+    <button onclick="myFunction()">sortear palavras</button>
+    
+    <p id="sorteio"></p>
+    
+    <!-- <h1 id="escolhido" class=""></h1> -->
+    <h1 id="escolhido" class="animate__animated animate__heartBeat"></h1>
+    <p>Você clicou <span id="vezes">0</span> vezes!</p>
+    <button onclick="parImpar()">par ou impar</button>
+
+
+
+    <script>
+        // const nomes = ['par','impar','redação','matemática','física','Ana','Beatriz','Yuri','Sato'];
+        const nomes = ['par',' impar'];
+        document.querySelector('#sorteio').innerHTML = nomes.toString();
+        
+        const digitado = document.querySelector('#sortear');
+        digitado.addEventListener('blur', (event) => {
+            // event.target.style.background = 'green';
+            // var res = digitado.split(",");
+            document.querySelector('#sorteio').innerHTML = digitado.value;
+            // document.querySelector('#sorteio').innerHTML = res;
+        });
+
+        function getRandomArbitrary(min, max) {
+            return Math.floor(Math.random() * (max - min)) + min;
+        }
+
+        function parImpar(){
+            const resultado  =  document.querySelector('#escolhido').innerHTML = nomes[getRandomArbitrary(0,nomes.length)];
+            var vez = document.querySelector('#vezes').innerText;
+            vez = parseInt(vez);
+            document.querySelector('#vezes').innerHTML = vez+1;
+        }
+
+        const resultado  =  document.querySelector('#escolhido').innerHTML = nomes[getRandomArbitrary(0,nomes.length)];
+
+            function myFunction(){
+                // const resultado  =  document.querySelector('#escolhido');
+                // resultado.classList.remove();
+                var res = digitado.value.split(",");
+                document.querySelector('#sorteio').innerHTML = res;
+                document.querySelector('#escolhido').innerHTML = res[getRandomArbitrary(0,res.length)];
+                // resultado.classList.add('animate__animated', 'animate__heartBeat');
+                console.table(res);
+                var vez = document.querySelector('#vezes').innerText;
+                vez = parseInt(vez);
+                document.querySelector('#vezes').innerHTML = vez+1;
+            }
+
+    </script>
+</body>
+</html>
